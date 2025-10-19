@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WorldLink - Accueil</title>
+  <title>WorldLink - Accueil / Home</title>
   <style>
-    /* --- Style global --- */
     body {
       margin: 0;
       padding: 0;
@@ -20,32 +19,29 @@
       text-align: center;
     }
 
-    /* --- Logo --- */
     .logo {
-      width: 150px;
+      width: 120px;
       height: auto;
       margin-bottom: 20px;
     }
 
-    /* --- Titres et textes --- */
     h1 {
-      font-size: 2.5em;
-      margin: 0;
+      font-size: 2.3em;
       font-weight: bold;
+      margin: 10px 0;
     }
 
     p {
-      margin-top: 10px;
       font-size: 1.1em;
+      margin: 5px 0;
     }
 
     .subtitle {
-      margin-top: 15px;
+      margin-top: 10px;
       font-size: 1em;
       font-style: italic;
     }
 
-    /* --- Bouton principal --- */
     .btn {
       background-color: #002e5b;
       color: white;
@@ -62,9 +58,8 @@
       background-color: #004b8d;
     }
 
-    /* --- Responsive --- */
     @media (max-width: 600px) {
-      h1 { font-size: 2em; }
+      h1 { font-size: 1.8em; }
       p { font-size: 1em; }
       .btn { padding: 12px 24px; font-size: 0.9em; }
     }
@@ -73,10 +68,18 @@
 <body>
   <img src="logo.png" alt="Logo WorldLink" class="logo">
 
-  <h1>WorldLink</h1>
-  <p><em>Strengthening global connections through culture</em></p>
-  <p class="subtitle">Découvrez les cultures, histoires et traditions de chaque coin du monde.</p>
+  <h1>🌍 WorldLink</h1>
 
-  <button class="btn" onclick="location.href='about.html'">Explorer maintenant / Explore now</button>
+  <!-- Français -->
+  <p><strong>Unir les Cultures, Connecter le Monde</strong></p>
+  <p>Découvrez les cultures, les histoires et les traditions de chaque coin du monde.</p>
+
+  <!-- Anglais -->
+  <p><strong>Unite Cultures, Connect the World</strong></p>
+  <p>Discover the cultures, stories and traditions from every corner of the world.</p>
+
+  <button class="btn" onclick="location.href='about.html'">
+    Explorer maintenant / Explore now
+  </button>
 </body>
 </html>
