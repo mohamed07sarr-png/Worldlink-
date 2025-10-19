@@ -3,99 +3,80 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WorldLink - Unir les Cultures</title>
+  <title>WorldLink - Accueil</title>
   <style>
+    /* --- Style global --- */
     body {
       margin: 0;
-      font-family: "Poppins", sans-serif;
-      background: linear-gradient(120deg, #ffffff, #f9f9f9);
-      color: #333;
-    }
-
-    header {
-      background: linear-gradient(90deg, #007bff, #ff8c00);
-      color: white;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #4a90e2, #f5a623);
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
       text-align: center;
-      padding: 2em 1em;
     }
 
-    header h1 {
-      margin: 0;
+    /* --- Logo --- */
+    .logo {
+      width: 150px;
+      height: auto;
+      margin-bottom: 20px;
+    }
+
+    /* --- Titres et textes --- */
+    h1 {
       font-size: 2.5em;
-    }
-
-    header p {
-      font-size: 1.2em;
-    }
-
-    main {
-      padding: 2em;
-      text-align: center;
-    }
-
-    section {
-      margin-bottom: 2em;
-    }
-
-    h2 {
-      color: #007bff;
-      margin-bottom: 0.5em;
-    }
-
-    .btn {
-      display: inline-block;
-      background: #007bff;
-      color: white;
-      padding: 0.8em 1.5em;
-      border-radius: 30px;
-      text-decoration: none;
+      margin: 0;
       font-weight: bold;
-      transition: 0.3s;
+    }
+
+    p {
+      margin-top: 10px;
+      font-size: 1.1em;
+    }
+
+    .subtitle {
+      margin-top: 15px;
+      font-size: 1em;
+      font-style: italic;
+    }
+
+    /* --- Bouton principal --- */
+    .btn {
+      background-color: #002e5b;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      padding: 15px 30px;
+      font-size: 1em;
+      cursor: pointer;
+      margin-top: 30px;
+      transition: background-color 0.3s ease;
     }
 
     .btn:hover {
-      background: #0056b3;
+      background-color: #004b8d;
     }
 
-    footer {
-      background: #333;
-      color: white;
-      text-align: center;
-      padding: 1.5em 1em;
-      margin-top: 3em;
-    }
-
-    footer a {
-      color: #ff8c00;
-      text-decoration: none;
-    }
-
-    footer a:hover {
-      text-decoration: underline;
+    /* --- Responsive --- */
+    @media (max-width: 600px) {
+      h1 { font-size: 2em; }
+      p { font-size: 1em; }
+      .btn { padding: 12px 24px; font-size: 0.9em; }
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>🌍 WorldLink</h1>
-    <p>Unir les Cultures, Connecter le Monde</p>
-  </header>
+  <img src="logo.png" alt="Logo WorldLink" class="logo">
 
-  <main>
-    <section>
-      <h2>Notre Mission</h2>
-      <p>WorldLink est une plateforme qui favorise la compréhension interculturelle et la collaboration entre les peuples du monde entier.</p>
-    </section>
+  <h1>WorldLink</h1>
+  <p><em>Strengthening global connections through culture</em></p>
+  <p class="subtitle">Découvrez les cultures, histoires et traditions de chaque coin du monde.</p>
 
-    <section>
-      <h2>Découvrez</h2>
-      <p>Explorez des articles, des témoignages et des projets qui célèbrent la diversité culturelle mondiale.</p>
-      <a href="#" class="btn">Explorer maintenant</a>
-    </section>
-  </main>
-
-  <footer>
-    <p>&copy; 2025 WorldLink. Tous droits réservés. | <a href="#">Contactez-nous</a></p>
-  </footer>
+  <button class="btn" onclick="location.href='about.html'">Explorer maintenant / Explore now</button>
 </body>
 </html>
