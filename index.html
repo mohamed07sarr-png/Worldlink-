@@ -3,103 +3,99 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Worldlink - Unir les Cultures</title>
+  <title>WorldLink - Unir les Cultures</title>
   <style>
     body {
       margin: 0;
       font-family: "Poppins", sans-serif;
       background: linear-gradient(120deg, #ffffff, #f9f9f9);
-      color: #222;
+      color: #333;
     }
+
     header {
       background: linear-gradient(90deg, #007bff, #ff8c00);
       color: white;
       text-align: center;
       padding: 2em 1em;
     }
-    h1 {
+
+    header h1 {
       margin: 0;
-      font-size: 2em;
+      font-size: 2.5em;
     }
-    nav {
-      background: #222;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      padding: 1em 0;
+
+    header p {
+      font-size: 1.2em;
     }
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: 500;
+
+    main {
+      padding: 2em;
+      text-align: center;
     }
-    nav a:hover {
-      text-decoration: underline;
-    }
+
     section {
-      padding: 2em;
-      text-align: center;
+      margin-bottom: 2em;
     }
-    .intro {
-      background: linear-gradient(135deg, #f0f8ff, #fff7e6);
-      border-radius: 12px;
-      margin: 1em;
-      padding: 2em;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+
+    h2 {
+      color: #007bff;
+      margin-bottom: 0.5em;
     }
-    .dual {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2em;
-      text-align: left;
+
+    .btn {
+      display: inline-block;
+      background: #007bff;
+      color: white;
+      padding: 0.8em 1.5em;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
     }
+
+    .btn:hover {
+      background: #0056b3;
+    }
+
     footer {
-      background: #111;
+      background: #333;
       color: white;
       text-align: center;
-      padding: 1em;
-      margin-top: 2em;
+      padding: 1.5em 1em;
+      margin-top: 3em;
     }
-    @media(max-width: 700px) {
-      .dual {
-        grid-template-columns: 1fr;
-      }
+
+    footer a {
+      color: #ff8c00;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>🌍 Worldlink</h1>
-    <p>Une plateforme mondiale unissant les cultures par la créativité et l’échange</p>
+    <h1>🌍 WorldLink</h1>
+    <p>Unir les Cultures, Connecter le Monde</p>
   </header>
 
-  <nav>
-    <a href="#">Accueil</a>
-    <a href="#">À propos</a>
-    <a href="#">Communauté</a>
-    <a href="#">Contact</a>
-  </nav>
+  <main>
+    <section>
+      <h2>Notre Mission</h2>
+      <p>WorldLink est une plateforme qui favorise la compréhension interculturelle et la collaboration entre les peuples du monde entier.</p>
+    </section>
 
-  <section class="intro">
-    <div class="dual">
-      <div>
-        <h2>🇫🇷 Version Française</h2>
-        <p>Bienvenue sur <b>Worldlink</b> — une plateforme qui relie les esprits créatifs à travers le monde. Explorez, partagez et collaborez autour de projets culturels et artistiques uniques.</p>
-      </div>
-      <div>
-        <h2>🇬🇧 English Version</h2>
-        <p>Welcome to <b>Worldlink</b> — a platform connecting creative minds across the world. Explore, share, and collaborate on unique cultural and artistic projects.</p>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <h2>✨ Application à venir</h2>
-    <p>Notre application mobile sera bientôt disponible sur Android et iOS. Restez connectés !</p>
-  </section>
+    <section>
+      <h2>Découvrez</h2>
+      <p>Explorez des articles, des témoignages et des projets qui célèbrent la diversité culturelle mondiale.</p>
+      <a href="#" class="btn">Explorer maintenant</a>
+    </section>
+  </main>
 
   <footer>
-    <p>© 2025 Worldlink | Connecter les cultures, inspirer le monde</p>
+    <p>&copy; 2025 WorldLink. Tous droits réservés. | <a href="#">Contactez-nous</a></p>
   </footer>
 </body>
-      </html>
+</html>
