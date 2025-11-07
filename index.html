@@ -1,143 +1,437 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>WorldLink - Accueil / Home</title>
+
+  <!-- Simple, responsive CSS -->
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #1a73e8, #f5a623);
-      color: #ffffff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      text-align: center;
+    :root{
+      --blue:#0a66c2;
+      --dark:#032a40;
+      --accent:#ff9a2e;
+      --btn-bg:#063a66;
+      --white:#ffffff;
+      --muted: #666;
+      --card-shadow: 0 6px 18px rgba(10,20,30,0.12);
+      font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     }
 
-    .logo {
-      width: 130px;
-      height: auto;
-      margin-bottom: 20px;
-      filter: drop-shadow(0 0 10px rgba(255,255,255,0.3));
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;background:#fafafa;color:#111}
+    a{color:var(--blue);text-decoration:none}
+    header{
+      background: linear-gradient(135deg,#4a90e2 0%, #b7c6d0 40%, #f5a623 100%);
+      color:var(--white);
+      padding:34px 18px;
+      text-align:center;
     }
+    .logo{width:110px;height:auto;display:block;margin:0 auto 8px}
+    h1{font-size:2.4rem;margin:8px 0 6px}
+    .slogan{font-size:1rem;opacity:0.95;margin-bottom:20px}
+    .subtitle{margin:0 auto;max-width:760px;color:#f7f7f7;opacity:0.95}
 
-    h1 {
-      font-size: 2.5em;
-      font-weight: bold;
-      margin: 10px 0;
+    main{padding:28px 14px;max-width:980px;margin:0 auto}
+    .center{display:flex;align-items:center;justify-content:center;flex-direction:column}
+    .btn{
+      background:var(--btn-bg); color:var(--white); border:none; padding:14px 26px;
+      border-radius:30px; font-weight:600; cursor:pointer; box-shadow:var(--card-shadow);
     }
+    .btn.secondary{background:#fff;color:var(--btn-bg);border:1px solid rgba(0,0,0,0.06)}
+    .section{background:white;padding:22px;border-radius:12px;box-shadow:var(--card-shadow);margin:18px 0}
+    .flex{display:flex;gap:14px;flex-wrap:wrap}
+    label{display:block;margin:8px 0 4px;font-weight:600}
+    input, select, textarea{width:100%;padding:10px;border-radius:8px;border:1px solid #e6e6e6}
+    footer{padding:18px;text-align:center;color:#ddd;background:#222;margin-top:28px}
+    .muted{color:var(--muted);font-size:0.95rem}
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    @media(max-width:760px){ .two-col{grid-template-columns:1fr} h1{font-size:1.8rem} }
 
-    p {
-      font-size: 1.2em;
-      margin: 8px 0;
-    }
+    /* Explore list */
+    .card{padding:12px;border-radius:10px;border:1px solid #eee;background:#fff}
+    .list{display:flex;flex-direction:column;gap:8px}
+    .small{font-size:0.95rem;color:var(--muted)}
 
-    .slogan {
-      font-style: italic;
-      font-size: 1em;
-      color: #e8f0fe;
-      margin-bottom: 30px;
-    }
+    /* modal */
+    .modal-back{position:fixed;inset:0;background:rgba(0,0,0,0.45);display:flex;align-items:center;justify-content:center;z-index:999}
+    .modal{width:96%;max-width:560px;background:#fff;padding:18px;border-radius:10px}
+    .close{float:right;background:transparent;border:none;font-size:20px;cursor:pointer}
 
-    .btn {
-      background-color: #002e5b;
-      color: #fff;
-      border: none;
-      border-radius: 30px;
-      padding: 15px 35px;
-      font-size: 1.1em;
-      cursor: pointer;
-      transition: background-color 0.3s ease, transform 0.2s ease;
-    }
+    /* tag */
+    .tag{display:inline-block;padding:6px 12px;border-radius:999px;background:#eef6ff;color:var(--blue);font-weight:600}
 
-    .btn:hover {
-      background-color: #004b8d;
-      transform: scale(1.05);
-    }
-
-    @media (max-width: 600px) {
-      h1 { font-size: 2em; }
-      p { font-size: 1em; }
-      .btn { padding: 12px 25px; font-size: 1em; }
-    }
+    /* tiny */
+    .muted-small{color:#888;font-size:0.9rem}
+    .center-text{text-align:center}
   </style>
 </head>
 <body>
-  <img src="logo.png" alt="Logo WorldLink" class="logo">
 
-  <h1>WorldLink</h1>
+  <!-- HEADER -->
+  <header id="header">
+    <!-- Upload your logo file as logo.png in repo root -->
+    <img class="logo" id="logoImg" src="logo.png" alt="Logo WorldLink" onerror="this.style.display='none'">
+    <h1 id="brand">WorldLink</h1>
+    <div class="subtitle">
+      <div style="display:flex;flex-direction:column;gap:6px;align-items:center">
+        <!-- bilingual on two lines as requested -->
+        <div style="font-weight:600">
+          <span id="slogan-en">Strengthening global connections through culture</span>
+        </div>
+        <div class="muted-small" id="slogan-fr">Renforcer les liens mondiaux à travers la culture</div>
+      </div>
+    </div>
+  </header>
 
-  <p class="slogan"><strong>Strengthening global connections through culture</strong></p>
-  <p class="slogan"><strong>Renforcer les liens mondiaux à travers la culture</strong></p>
+  <!-- MAIN APP (SPA-like using hash routes) -->
+  <main id="app" class="center">
+    <!-- Home view -->
+    <section id="homeView" class="center" style="width:100%;max-width:780px">
+      <div class="section center">
+        <h2 class="center-text">Bienvenue / Welcome</h2>
+        <p class="muted-small center-text">Découvrez les cultures, histoires et traditions du monde. / Discover cultures, stories and traditions from every corner of the world.</p>
+        <div style="height:18px"></div>
 
-  <button class="btn" onclick="location.href='about.html'">Explorer maintenant / Explore now</button>
+        <button class="btn" id="exploreBtn">Explorer maintenant / Explore now</button>
+        <div style="height:10px"></div>
+        <p class="muted-small">© 2025 WorldLink</p>
+      </div>
+    </section>
+
+    <!-- About view -->
+    <section id="aboutView" class="section" style="display:none">
+      <h2>À propos / About</h2>
+      <p><strong>🌍 WorldLink</strong> est une plateforme qui favorise la compréhension interculturelle et la collaboration entre les peuples du monde entier.</p>
+      <p><strong>🌍 WorldLink</strong> is a platform that promotes intercultural understanding and collaboration across the globe.</p>
+
+      <blockquote style="font-style:italic;margin:12px 0;padding-left:12px;border-left:3px solid #eee;color:#444">
+        <div>« Internet appartient à ceux qui osent créer. »</div>
+      </blockquote>
+
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <button class="btn" id="discoverBtn">Découvrir le monde / Discover the world</button>
+        <button class="btn secondary" onclick="go('#explore')">Visiter l'explorer / Visit explore</button>
+      </div>
+    </section>
+
+    <!-- Explore view -->
+    <section id="exploreView" class="section" style="display:none;width:100%;max-width:980px">
+      <h2>Explorer / Explore</h2>
+
+      <div class="two-col">
+        <div>
+          <label>Continents</label>
+          <div id="continentsList" class="list card small"></div>
+        </div>
+
+        <div>
+          <label>Pays</label>
+          <div id="countriesList" class="list card small">Choisissez un continent d'abord / Choose a continent first</div>
+        </div>
+      </div>
+
+      <div style="height:12px"></div>
+
+      <div>
+        <label>Culture(s) proposées</label>
+        <div id="culturesList" class="list card small">Choisissez un pays</div>
+      </div>
+
+      <div style="height:12px"></div>
+
+      <div id="cultureDetail" class="card" style="display:none">
+        <h3 id="cultureTitle"></h3>
+        <p id="cultureDesc"></p>
+        <div id="cultureMedia"></div>
+        <div style="height:10px"></div>
+        <button class="btn" id="toPremiumBtn">Voir contenu premium / See premium content</button>
+      </div>
+    </section>
+
+    <!-- Premium view -->
+    <section id="premiumView" class="section" style="display:none;max-width:760px">
+      <h2>Premium</h2>
+      <p>Profitez d'un accès illimité, sans publicité, et de contenus exclusifs (légendes complètes, audio, vidéos longues).</p>
+
+      <div class="flex" style="margin-top:12px">
+        <div class="card" style="flex:1">
+          <h3>500 F / mois</h3>
+          <p class="small">Basique — 5 F crédit/vidéo (démo), accès aux légendes courtes premium</p>
+          <button class="btn" onclick="startCheckout('500')">S'abonner</button>
+        </div>
+
+        <div class="card" style="flex:1">
+          <h3>1500 F / mois</h3>
+          <p class="small">Standard — 15 F crédit/vidéo, plus de contenus</p>
+          <button class="btn" onclick="startCheckout('1500')">S'abonner</button>
+        </div>
+
+        <div class="card" style="flex:1">
+          <h3>3000 F / mois</h3>
+          <p class="small">Pro — 50 F crédit/vidéo, accès complet</p>
+          <button class="btn" onclick="startCheckout('3000')">S'abonner</button>
+        </div>
+      </div>
+
+      <div style="height:12px"></div>
+      <p class="muted-small">Paiement simulé dans cette version. Pour accepter de vrais paiements, vois les notes technique au bas de la page.</p>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="muted-small">M.T.S — Internet appartient à ceux qui osent créer</div>
+  </footer>
+
+  <!-- MODALS -->
+  <div id="consentModal" style="display:none" class="modal-back">
+    <div class="modal">
+      <button class="close" onclick="closeConsent()">✕</button>
+      <h3>Avant d'explorer / Before you explore</h3>
+      <p>Entrez votre Gmail et votre numéro de téléphone (obligatoire) pour continuer.</p>
+
+      <label for="emailInp">Adresse Gmail (obligatoire)</label>
+      <input id="emailInp" type="email" placeholder="exemple@gmail.com" />
+
+      <label for="phoneInp">Numéro de téléphone (obligatoire)</label>
+      <input id="phoneInp" type="tel" placeholder="+221 7xx xxx xxx" />
+
+      <div style="height:10px"></div>
+      <div style="display:flex;gap:8px;justify-content:flex-end">
+        <button class="btn secondary" onclick="closeConsent()">Annuler</button>
+        <button class="btn" onclick="saveConsent()">Continuer / Continue</button>
+      </div>
+      <p class="muted-small" style="margin-top:8px">Vos données sont stockées de façon basique. Voir la configuration pour Google Sheets si vous voulez centraliser.</p>
+    </div>
+  </div>
+
+  <!-- Simple success / info modal -->
+  <div id="infoModal" style="display:none" class="modal-back"><div class="modal"><button class="close" onclick="hideInfo()">✕</button><div id="infoContent"></div></div></div>
+
+  <!-- SCRIPTS: app SPA, data, local-sim -->
+  <script>
+    /* ---------- SAMPLE DATA (continent → countries → cultures) ----------
+       In production you will replace this with a dynamic DB or a JSON file served from your backend.
+    */
+    const WORLD = {
+      "Africa": {
+        "Senegal": [
+          {
+            id: "sabar",
+            title: "Sabar (Senegalese drumming & dance)",
+            summary: "Percussion, dance and social gatherings. Dress: colorful bubu, beads.",
+            media: [
+              {type:"img", src:"https://upload.wikimedia.org/wikipedia/commons/3/3f/Dance_Senegal.jpg", caption:"Danse traditionnelle"},
+              {type:"audio", src:"", caption:"(audio non disponible)"},
+              {type:"video", src:"", caption:"(vidéo non disponible)"}
+            ],
+            detail: {
+              language: "Wolof, French",
+              speaking: "Certaines expressions rituelles et proverbes wolof",
+              life: "Importance des cérémonies familiales, respect des anciens",
+            },
+            premiumNote: "Légende complète et interviews (premium)"
+          }
+        ],
+        "Nigeria":[
+          { id:"yoruba", title:"Yoruba traditions", summary:"Masques, Ifá, musiques", media:[], detail:{language:"Yoruba, English"} }
+        ]
+      },
+      "Europe":{
+        "France":[
+          { id:"breton", title:"Breton traditions", summary:"Fest-noz, gwerz", media:[], detail:{language:"French"} }
+        ],
+        "UK":[
+          { id:"pub", title:"Pub culture", summary:"Musiques et convivialité", media:[], detail:{language:"English"} }
+        ]
+      },
+      "Asia":{
+        "Japan":[
+          { id:"matsuri", title:"Matsuri (festivals)", summary:"Parades, mikoshi, nourriture", media:[], detail:{language:"Japanese"} }
+        ]
+      },
+      "Americas":{
+        "USA":[
+          { id:"blues", title:"Blues music", summary:"Origine, instruments, style", media:[], detail:{language:"English"} }
+        ],
+        "Brazil":[
+          { id:"samba", title:"Samba", summary:"Dance and carnival", media:[], detail:{language:"Portuguese"} }
+        ]
+      },
+      "Oceania":{
+        "Australia":[
+          { id:"aboriginal", title:"Aboriginal Dreamtime", summary:"Oral legends & art", media:[], detail:{language:"English"} }
+        ]
+      }
+    };
+
+    /* ---------- Simple router ---------- */
+    function go(hash){
+      location.hash = hash;
+    }
+
+    function showView(view){
+      const ids=['homeView','aboutView','exploreView','premiumView'];
+      ids.forEach(id=>document.getElementById(id).style.display = (id===view ? '' : 'none'));
+      // header small/big?
+      window.scrollTo({top:0,behavior:'smooth'});
+    }
+
+    function onHash(){
+      const h = location.hash.replace('#','') || 'home';
+      if(h==='home'){ showView('homeView'); }
+      else if(h==='about'){ showView('aboutView'); }
+      else if(h==='explore'){ showView('exploreView'); loadContinents(); }
+      else if(h==='premium'){ showView('premiumView'); }
+      else { showView('homeView'); }
+    }
+    window.addEventListener('hashchange', onHash);
+    onHash();
+
+    /* ---------- Consent modal (email + phone) ---------- */
+    const consentModal = document.getElementById('consentModal');
+    const emailInp = document.getElementById('emailInp');
+    const phoneInp = document.getElementById('phoneInp');
+
+    document.getElementById('exploreBtn').addEventListener('click', ()=>{
+      // show modal (required)
+      consentModal.style.display = 'flex';
+    });
+
+    document.getElementById('discoverBtn').addEventListener('click', ()=> go('#explore'));
+
+    function closeConsent(){ consentModal.style.display='none'; }
+
+    function saveConsent(){
+      const email = emailInp.value.trim();
+      const phone = phoneInp.value.trim();
+      if(!email || !phone){ alert('Email et numéro obligatoires / Email and phone required'); return; }
+      // Basic validation passed -> store locally and (optionally) send to Google Sheets (see notes)
+      localStorage.setItem('explorer_user', JSON.stringify({email,phone,ts:Date.now()}));
+      consentModal.style.display='none';
+      go('#explore');
+      alert("Merci ! Vous pouvez maintenant explorer / Thank you! You can now explore.");
+      // Example: sendToGoogleSheets({email,phone});  // see below
+    }
+
+    /* ---------- Simple info modal ---------- */
+    function showInfo(html){ document.getElementById('infoContent').innerHTML = html; document.getElementById('infoModal').style.display='flex'; }
+    function hideInfo(){ document.getElementById('infoModal').style.display='none'; }
+
+    /* ---------- Explore: list continents, countries, cultures ---------- */
+    function loadContinents(){
+      const cont = Object.keys(WORLD);
+      const el = document.getElementById('continentsList');
+      el.innerHTML = '';
+      cont.forEach(cn=>{
+        const btn = document.createElement('button');
+        btn.className='card tag';
+        btn.textContent = cn;
+        btn.onclick = ()=>selectContinent(cn);
+        el.appendChild(btn);
+      });
+      // reset others
+      document.getElementById('countriesList').innerHTML = 'Choisissez un continent / Choose a continent';
+      document.getElementById('culturesList').innerHTML = 'Choisissez un pays / Choose a country';
+      document.getElementById('cultureDetail').style.display='none';
+    }
+
+    function selectContinent(name){
+      const countries = Object.keys(WORLD[name]||{});
+      const el = document.getElementById('countriesList');
+      el.innerHTML = '';
+      if(countries.length===0) el.innerHTML = '<div class="small">Aucun pays disponible</div>';
+      countries.forEach(ct=>{
+        const div = document.createElement('div');
+        div.className='card';
+        div.style.cursor='pointer';
+        div.textContent = ct;
+        div.onclick = ()=>selectCountry(name,ct);
+        el.appendChild(div);
+      });
+    }
+
+    function selectCountry(cont,country){
+      const list = WORLD[cont][country] || [];
+      const el = document.getElementById('culturesList');
+      el.innerHTML = '';
+      if(list.length===0) el.innerHTML = '<div class="small">Aucune culture trouvée</div>';
+      list.forEach(item=>{
+        const node = document.createElement('div');
+        node.className='card';
+        const title = document.createElement('div'); title.style.fontWeight='700'; title.textContent = item.title;
+        const p = document.createElement('div'); p.className='small'; p.textContent = item.summary;
+        const btn = document.createElement('button'); btn.className='btn secondary'; btn.textContent='Voir / View';
+        btn.onclick = ()=>showCulture(item);
+        node.appendChild(title); node.appendChild(p); node.appendChild(btn);
+        el.appendChild(node);
+      });
+    }
+
+    function showCulture(item){
+      document.getElementById('cultureTitle').textContent = item.title;
+      document.getElementById('cultureDesc').textContent = JSON.stringify(item.detail || {}, null, 2).replace(/\\n/g,' ');
+      const media = document.getElementById('cultureMedia'); media.innerHTML='';
+      (item.media||[]).forEach(m=>{
+        if(m.type==='img'){ const i=document.createElement('img'); i.src=m.src; i.style.maxWidth='100%'; media.appendChild(i); }
+        if(m.type==='video'){ const v=document.createElement('div'); v.textContent='(vidéo) '+(m.caption||''); media.appendChild(v); }
+      });
+      document.getElementById('cultureDetail').style.display='';
+      // attach premium button
+      document.getElementById('toPremiumBtn').onclick = ()=>go('#premium');
+    }
+
+    /* ---------- Premium checkout (SIMULATED) ---------- */
+    function startCheckout(plan){
+      // In production: call your backend to create a Stripe checkout session (server-side)
+      showInfo('<h3>Simulate Payment</h3><p>Plan selected: '+plan+' F /month</p><p>This demo does not process real payments.</p><p>In production you must connect a payment provider (Stripe, PayDunya, or Mobile Money gateway) with a server endpoint.</p>');
+    }
+
+    /* ---------- Google Sheets integration (optional) ----------
+       To save emails + phones centrally you can create a Google Apps Script web app endpoint:
+       1) In Google Drive -> New -> More -> Google Apps Script
+       2) Create a script that accepts POST JSON and appends to a Google Sheet.
+       3) Deploy -> "Web app" -> Anyone, even anonymous (or only your account if using auth)
+       4) Use the endpoint URL below and call fetch(endpoint, {method:'POST', body:JSON.stringify(data)})
+       Example Apps Script code (server side) is in the README below.
+    */
+    async function sendToGoogleSheets(data){
+      const SHEETS_ENDPOINT = 'REPLACE_WITH_YOUR_APPS_SCRIPT_URL';
+      if(!SHEETS_ENDPOINT || SHEETS_ENDPOINT.startsWith('REPLACE')) return console.log('Sheets endpoint not configured.');
+      try{
+        const r = await fetch(SHEETS_ENDPOINT, {
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body: JSON.stringify(data)
+        });
+        const json = await r.json();
+        console.log('Sheets response',json);
+      }catch(e){console.error(e)}
+    }
+
+    /* ---------- small helpers ---------- */
+    document.getElementById('logoImg').onclick = ()=> window.open('/', '_self');
+    // initial route
+    if(!location.hash) location.hash = '#home';
+    onHash();
+
+    // Let the "About -> Discover" button go to explore
+    document.getElementById('discoverBtn').addEventListener('click', ()=> {
+      go('#explore');
+    });
+
+    // Save consent send to sheet example
+    function saveConsentAndSend(){
+      const obj = JSON.parse(localStorage.getItem('explorer_user')||'{}');
+      if(obj.email) sendToGoogleSheets({type:'signup', ...obj});
+    }
+
+    // call at startup if exists locally
+    if(localStorage.getItem('explorer_user')) saveConsentAndSend();
+
+  </script>
+
+  <!-- END body -->
 </body>
-</html>
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>À propos / About - WorldLink</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #1a73e8, #f5a623);
-      color: #ffffff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      min-height: 100vh;
-      padding: 30px;
-    }
-
-    h1 {
-      font-size: 2.5em;
-      font-weight: bold;
-    }
-
-    p {
-      max-width: 700px;
-      font-size: 1.2em;
-      line-height: 1.6;
-      margin-bottom: 25px;
-    }
-
-    .btn {
-      background-color: #002e5b;
-      color: white;
-      border: none;
-      border-radius: 25px;
-      padding: 12px 28px;
-      font-size: 1em;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    .btn:hover {
-      background-color: #004b8d;
-    }
-  </style>
-</head>
-<body>
-  <h1>À propos de WorldLink / About WorldLink</h1>
-
-  <p><strong>🌍 WorldLink</strong> est une plateforme dédiée à la découverte et au partage des cultures du monde.  
-  Elle vise à renforcer les liens entre les peuples à travers les histoires, les traditions et les expressions culturelles.  
-  Notre mission est de faire de WorldLink l’une des plus grandes plateformes culturelles d’Afrique, et à terme,  
-  l’un des trois sites mondiaux de référence dans le domaine du partage culturel.</p>
-
-  <p><strong>🌐 WorldLink</strong> is a platform for discovering and sharing the world’s cultures.  
-  Our mission is to strengthen global connections through stories, traditions, and creativity —  
-  bringing people closer, one culture at a time.</p><button class="btn" onclick="location.href='index.html'">⬅ Retour / Back</button>⬅ Retour / Back</button>
-</body>
-</html>
+  </html>
