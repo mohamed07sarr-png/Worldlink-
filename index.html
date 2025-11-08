@@ -3,435 +3,354 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>WorldLink - Accueil / Home</title>
-
-  <!-- Simple, responsive CSS -->
+  <title>ExploreWorld</title>
+  <meta name="description" content="ExploreWorld — Strengthening global connections through culture. Plateforme bilingue FR/EN pour découvrir les cultures du monde.">
   <style>
+    /* ========== Style (modern, white + soft blue/orange gradient) ========== */
     :root{
-      --blue:#0a66c2;
-      --dark:#032a40;
-      --accent:#ff9a2e;
-      --btn-bg:#063a66;
-      --white:#ffffff;
-      --muted: #666;
-      --card-shadow: 0 6px 18px rgba(10,20,30,0.12);
-      font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --blue:#1a73e8;
+      --blue-dark:#063a66;
+      --orange:#ff9a2e;
+      --bg-grad: linear-gradient(135deg, rgba(26,115,232,0.12), rgba(245,162,35,0.06));
+      --card-shadow: 0 10px 30px rgba(2,46,82,0.08);
+      --muted:#6b7280;
+      --radius:12px;
+      --glass: rgba(255,255,255,0.92);
+      font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     }
-
     *{box-sizing:border-box}
-    html,body{height:100%;margin:0;background:#fafafa;color:#111}
-    a{color:var(--blue);text-decoration:none}
-    header{
-      background: linear-gradient(135deg,#4a90e2 0%, #b7c6d0 40%, #f5a623 100%);
-      color:var(--white);
-      padding:34px 18px;
-      text-align:center;
-    }
-    .logo{width:110px;height:auto;display:block;margin:0 auto 8px}
-    h1{font-size:2.4rem;margin:8px 0 6px}
-    .slogan{font-size:1rem;opacity:0.95;margin-bottom:20px}
-    .subtitle{margin:0 auto;max-width:760px;color:#f7f7f7;opacity:0.95}
-
-    main{padding:28px 14px;max-width:980px;margin:0 auto}
-    .center{display:flex;align-items:center;justify-content:center;flex-direction:column}
-    .btn{
-      background:var(--btn-bg); color:var(--white); border:none; padding:14px 26px;
-      border-radius:30px; font-weight:600; cursor:pointer; box-shadow:var(--card-shadow);
-    }
-    .btn.secondary{background:#fff;color:var(--btn-bg);border:1px solid rgba(0,0,0,0.06)}
-    .section{background:white;padding:22px;border-radius:12px;box-shadow:var(--card-shadow);margin:18px 0}
-    .flex{display:flex;gap:14px;flex-wrap:wrap}
-    label{display:block;margin:8px 0 4px;font-weight:600}
-    input, select, textarea{width:100%;padding:10px;border-radius:8px;border:1px solid #e6e6e6}
-    footer{padding:18px;text-align:center;color:#ddd;background:#222;margin-top:28px}
-    .muted{color:var(--muted);font-size:0.95rem}
-    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-    @media(max-width:760px){ .two-col{grid-template-columns:1fr} h1{font-size:1.8rem} }
-
-    /* Explore list */
-    .card{padding:12px;border-radius:10px;border:1px solid #eee;background:#fff}
-    .list{display:flex;flex-direction:column;gap:8px}
-    .small{font-size:0.95rem;color:var(--muted)}
-
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,#ffffff,#fbfdff);color:#0b2030}
+    a{color:var(--blue)}
+    /* header */
+    header.site-header{background:var(--bg-grad);padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;position:sticky;top:0;backdrop-filter: blur(4px);z-index:40}
+    .brand{display:flex;align-items:center;gap:12px}
+    #logoImg{width:64px;height:64px;border-radius:10px;object-fit:cover;display:block}
+    .brand-text{display:flex;flex-direction:column;line-height:1}
+    .brand-title{font-weight:700;font-size:1.15rem;margin:0}
+    .brand-slogan{font-size:0.82rem;color:var(--muted);opacity:0.95}
+    .header-actions{display:flex;gap:10px;align-items:center}
+    .lang-btn{background:transparent;border:1px solid rgba(10,20,30,0.06);padding:8px 12px;border-radius:999px;cursor:pointer;font-weight:600}
+    /* container */
+    main.container{max-width:1100px;margin:22px auto;padding:0 14px}
+    .view{display:none;animation:fadeIn .38s ease both}
+    .view.active{display:block}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+    /* hero */
+    .hero{background:var(--glass);border-radius:14px;padding:36px;text-align:center;box-shadow:var(--card-shadow);border:1px solid rgba(10,20,30,0.03)}
+    .hero h2{margin:6px 0;font-size:1.8rem}
+    .lead{color:var(--muted);margin:12px 0}
+    .cta{display:inline-block;background:linear-gradient(180deg,#2a77ff,var(--blue));color:white;padding:14px 28px;border-radius:40px;border:none;cursor:pointer;font-weight:700;box-shadow:0 10px 26px rgba(26,115,232,0.18)}
+    .cta.secondary{background:white;color:var(--blue-dark);border:1px solid rgba(10,20,30,0.04)}
+    .muted{color:var(--muted)}
+    /* card */
+    .card{background:white;padding:18px;border-radius:12px;box-shadow:var(--card-shadow);border:1px solid rgba(10,20,30,0.03)}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+    /* chips & lists */
+    .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+    .chip{background:linear-gradient(180deg,#fff,#f7fbff);border-radius:999px;padding:8px 14px;border:1px solid rgba(10,20,30,0.04);cursor:pointer;font-weight:600}
+    .chip:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(10,20,30,0.06)}
+    .list{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-top:12px}
+    .country{display:flex;gap:12px;align-items:center;padding:10px;border-radius:10px;border:1px solid #eef3fb;cursor:pointer;background:linear-gradient(180deg,#fff,#fbfeff)}
+    .country img.flag{width:64px;height:42px;object-fit:cover;border-radius:6px;border:1px solid #e6eefb}
+    .flag-large{width:220px;height:auto;border-radius:8px;box-shadow:0 8px 20px rgba(2,46,82,0.06)}
     /* modal */
-    .modal-back{position:fixed;inset:0;background:rgba(0,0,0,0.45);display:flex;align-items:center;justify-content:center;z-index:999}
-    .modal{width:96%;max-width:560px;background:#fff;padding:18px;border-radius:10px}
-    .close{float:right;background:transparent;border:none;font-size:20px;cursor:pointer}
-
-    /* tag */
-    .tag{display:inline-block;padding:6px 12px;border-radius:999px;background:#eef6ff;color:var(--blue);font-weight:600}
-
-    /* tiny */
-    .muted-small{color:#888;font-size:0.9rem}
-    .center-text{text-align:center}
+    .modal-back{position:fixed;inset:0;background:rgba(3,10,20,0.45);display:flex;align-items:center;justify-content:center;z-index:999}
+    .modal{width:96%;max-width:560px;background:white;border-radius:12px;padding:18px;box-shadow:var(--card-shadow)}
+    .modal h3{margin:0 0 8px}
+    .form-row{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+    input[type="email"],input[type="tel"],input[type="search"]{padding:10px;border-radius:10px;border:1px solid #e9eef6}
+    label{font-weight:600;font-size:0.95rem}
+    .footer{margin:28px 0;text-align:center;color:var(--muted);font-size:0.95rem}
+    /* responsive */
+    @media(max-width:880px){
+      .brand-title{font-size:1rem}
+      .hero h2{font-size:1.4rem}
+      .list{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
+    }
   </style>
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header id="header">
-    <!-- Upload your logo file as logo.png in repo root -->
-    <img class="logo" id="logoImg" src="logo.png" alt="Logo WorldLink" onerror="this.style.display='none'">
-    <h1 id="brand">WorldLink</h1>
-    <div class="subtitle">
-      <div style="display:flex;flex-direction:column;gap:6px;align-items:center">
-        <!-- bilingual on two lines as requested -->
-        <div style="font-weight:600">
-          <span id="slogan-en">Strengthening global connections through culture</span>
-        </div>
-        <div class="muted-small" id="slogan-fr">Renforcer les liens mondiaux à travers la culture</div>
+  <!-- HEADER - Logo + slogan on all pages -->
+  <header class="site-header" role="banner">
+    <div class="brand">
+      <!-- If you upload assets/logo-worldlink.png it will show; otherwise text remains -->
+      <img id="logoImg" src="assets/logo-worldlink.png" alt="ExploreWorld logo" onerror="this.style.display='none'">
+      <div class="brand-text">
+        <div class="brand-title">ExploreWorld</div>
+        <div class="brand-slogan">Strengthening global connections through culture — Du local à l’universel</div>
       </div>
+    </div>
+
+    <div class="header-actions">
+      <button id="langToggle" class="lang-btn" aria-label="Toggle language">EN</button>
     </div>
   </header>
 
-  <!-- MAIN APP (SPA-like using hash routes) -->
-  <main id="app" class="center">
-    <!-- Home view -->
-    <section id="homeView" class="center" style="width:100%;max-width:780px">
-      <div class="section center">
-        <h2 class="center-text">Bienvenue / Welcome</h2>
-        <p class="muted-small center-text">Découvrez les cultures, histoires et traditions du monde. / Discover cultures, stories and traditions from every corner of the world.</p>
-        <div style="height:18px"></div>
+  <!-- MAIN -->
+  <main class="container" role="main">
 
-        <button class="btn" id="exploreBtn">Explorer maintenant / Explore now</button>
-        <div style="height:10px"></div>
-        <p class="muted-small">© 2025 WorldLink</p>
+    <!-- HOME -->
+    <section id="homeView" class="view active">
+      <div class="hero">
+        <h2 data-i18n="welcome">Bienvenue — Welcome</h2>
+        <p class="lead" data-i18n="lead">Découvrez les cultures, histoires et traditions du monde.</p>
+        <div style="height:12px"></div>
+        <button id="exploreNow" class="cta" aria-haspopup="dialog" data-i18n="exploreBtn">Explorer maintenant / Explore now</button>
+        <div style="height:12px"></div>
+        <p class="muted">Application bientôt disponible • Version bilingue FR / EN</p>
+      </div>
+      <div style="height:18px"></div>
+      <div class="card">
+        <h3>Pourquoi ExploreWorld ?</h3>
+        <p class="muted">Une plateforme pour découvrir chaque culture en détail : langages, comportements, croyances, vêtements, légendes et plus — conçue pour apprendre et connecter.</p>
       </div>
     </section>
 
-    <!-- About view -->
-    <section id="aboutView" class="section" style="display:none">
-      <h2>À propos / About</h2>
-      <p><strong>🌍 WorldLink</strong> est une plateforme qui favorise la compréhension interculturelle et la collaboration entre les peuples du monde entier.</p>
-      <p><strong>🌍 WorldLink</strong> is a platform that promotes intercultural understanding and collaboration across the globe.</p>
-
-      <blockquote style="font-style:italic;margin:12px 0;padding-left:12px;border-left:3px solid #eee;color:#444">
-        <div>« Internet appartient à ceux qui osent créer. »</div>
-      </blockquote>
-
-      <div style="display:flex;gap:12px;flex-wrap:wrap">
-        <button class="btn" id="discoverBtn">Découvrir le monde / Discover the world</button>
-        <button class="btn secondary" onclick="go('#explore')">Visiter l'explorer / Visit explore</button>
+    <!-- ABOUT -->
+    <section id="aboutView" class="view">
+      <div class="card">
+        <h2 data-i18n="aboutTitle">À propos / About</h2>
+        <p data-i18n="aboutText">ExploreWorld réunit le monde à travers la culture. Notre mission : rapprocher les peuples en partageant histoires, traditions et langues.</p>
+        <blockquote style="font-style:italic;border-left:3px solid rgba(10,20,30,0.06);padding-left:10px;color:#444;margin:12px 0">« Internet appartient à ceux qui osent créer. »</blockquote>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:10px">
+          <button class="cta" id="discoverBtn" data-i18n="discover">Découvrir le monde / Discover the world</button>
+          <button class="cta secondary" onclick="showView('homeView')" data-i18n="back">Retour</button>
+        </div>
       </div>
     </section>
 
-    <!-- Explore view -->
-    <section id="exploreView" class="section" style="display:none;width:100%;max-width:980px">
-      <h2>Explorer / Explore</h2>
+    <!-- EXPLORE -->
+    <section id="exploreView" class="view">
+      <div class="card">
+        <h2 data-i18n="exploreTitle">Explorer / Explore</h2>
 
-      <div class="two-col">
-        <div>
-          <label>Continents</label>
-          <div id="continentsList" class="list card small"></div>
+        <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:10px">
+          <div style="flex:1;min-width:240px">
+            <label data-i18n="chooseContinent">Choisissez un continent / Choose a continent</label>
+            <div id="continents" class="chips" aria-label="Continents list"></div>
+          </div>
+
+          <div style="flex:2;min-width:260px">
+            <label data-i18n="searchCountry">Rechercher un pays / Search country</label>
+            <input id="countrySearch" type="search" placeholder="Ex: Sénégal / Senegal" />
+            <div id="countriesList" class="list" aria-live="polite" style="margin-top:10px"></div>
+          </div>
         </div>
 
-        <div>
-          <label>Pays</label>
-          <div id="countriesList" class="list card small">Choisissez un continent d'abord / Choose a continent first</div>
+        <div id="countryDetail" class="card" style="margin-top:12px;display:none">
+          <h3 id="countryName"></h3>
+          <img id="countryFlag" class="flag-large" alt="flag"/>
+          <p id="countryRegion" class="muted"></p>
+          <div id="cultureDetails" style="margin-top:8px"></div>
+          <div style="margin-top:10px;display:flex;gap:10px">
+            <button class="cta" onclick="showView('premiumView')" data-i18n="seePremium">Voir contenu premium</button>
+            <button class="cta secondary" onclick="closeCountryDetail()" data-i18n="back">Retour</button>
+          </div>
         </div>
-      </div>
-
-      <div style="height:12px"></div>
-
-      <div>
-        <label>Culture(s) proposées</label>
-        <div id="culturesList" class="list card small">Choisissez un pays</div>
-      </div>
-
-      <div style="height:12px"></div>
-
-      <div id="cultureDetail" class="card" style="display:none">
-        <h3 id="cultureTitle"></h3>
-        <p id="cultureDesc"></p>
-        <div id="cultureMedia"></div>
-        <div style="height:10px"></div>
-        <button class="btn" id="toPremiumBtn">Voir contenu premium / See premium content</button>
       </div>
     </section>
 
-    <!-- Premium view -->
-    <section id="premiumView" class="section" style="display:none;max-width:760px">
-      <h2>Premium</h2>
-      <p>Profitez d'un accès illimité, sans publicité, et de contenus exclusifs (légendes complètes, audio, vidéos longues).</p>
-
-      <div class="flex" style="margin-top:12px">
-        <div class="card" style="flex:1">
-          <h3>500 F / mois</h3>
-          <p class="small">Basique — 5 F crédit/vidéo (démo), accès aux légendes courtes premium</p>
-          <button class="btn" onclick="startCheckout('500')">S'abonner</button>
+    <!-- PREMIUM -->
+    <section id="premiumView" class="view">
+      <div class="card">
+        <h2 data-i18n="premiumTitle">Premium</h2>
+        <p data-i18n="premiumIntro">Accès aux histoires exclusives, sans publicité et contenus approfondis.</p>
+        <div class="grid" style="margin-top:10px">
+          <div class="card">
+            <h3>500 F / mois</h3>
+            <p class="muted">Découverte — 5 F crédit/vidéo (démo)</p>
+          </div>
+          <div class="card">
+            <h3>1500 F / mois</h3>
+            <p class="muted">Explorateur — 15 F crédit/vidéo</p>
+          </div>
+          <div class="card">
+            <h3>3000 F / mois</h3>
+            <p class="muted">Ambassadeur — 50 F crédit/vidéo</p>
+          </div>
         </div>
 
-        <div class="card" style="flex:1">
-          <h3>1500 F / mois</h3>
-          <p class="small">Standard — 15 F crédit/vidéo, plus de contenus</p>
-          <button class="btn" onclick="startCheckout('1500')">S'abonner</button>
-        </div>
-
-        <div class="card" style="flex:1">
-          <h3>3000 F / mois</h3>
-          <p class="small">Pro — 50 F crédit/vidéo, accès complet</p>
-          <button class="btn" onclick="startCheckout('3000')">S'abonner</button>
+        <div style="margin-top:12px">
+          <p class="muted">Paiement simulé dans cette version. Pour accepter de vrais paiements, connectez Stripe / PayDunya via un backend sécurisé.</p>
         </div>
       </div>
-
-      <div style="height:12px"></div>
-      <p class="muted-small">Paiement simulé dans cette version. Pour accepter de vrais paiements, vois les notes technique au bas de la page.</p>
     </section>
+
   </main>
 
-  <!-- Footer -->
-  <footer>
-    <div class="muted-small">M.T.S — Internet appartient à ceux qui osent créer</div>
-  </footer>
+  <div class="footer">© ExploreWorld — Internet appartient à ceux qui osent créer. M.T.S</div>
 
-  <!-- MODALS -->
-  <div id="consentModal" style="display:none" class="modal-back">
+  <!-- ========== Consent modal (collect Gmail + phone) ========== -->
+  <div id="consentModal" class="modal-back" style="display:none" role="dialog" aria-modal="true">
     <div class="modal">
-      <button class="close" onclick="closeConsent()">✕</button>
-      <h3>Avant d'explorer / Before you explore</h3>
-      <p>Entrez votre Gmail et votre numéro de téléphone (obligatoire) pour continuer.</p>
+      <h3 data-i18n="consentTitle">Avant d'explorer / Before you explore</h3>
+      <p data-i18n="consentText">Entrez votre Gmail et votre numéro de téléphone (obligatoire).</p>
 
-      <label for="emailInp">Adresse Gmail (obligatoire)</label>
-      <input id="emailInp" type="email" placeholder="exemple@gmail.com" />
-
-      <label for="phoneInp">Numéro de téléphone (obligatoire)</label>
-      <input id="phoneInp" type="tel" placeholder="+221 7xx xxx xxx" />
-
-      <div style="height:10px"></div>
-      <div style="display:flex;gap:8px;justify-content:flex-end">
-        <button class="btn secondary" onclick="closeConsent()">Annuler</button>
-        <button class="btn" onclick="saveConsent()">Continuer / Continue</button>
+      <div class="form-row">
+        <label for="emailInput">Gmail *</label>
+        <input id="emailInput" type="email" placeholder="exemple@gmail.com" autocomplete="email" />
+        <label for="phoneInput">Téléphone *</label>
+        <input id="phoneInput" type="tel" placeholder="+221 77 123 45 67" autocomplete="tel" />
       </div>
-      <p class="muted-small" style="margin-top:8px">Vos données sont stockées de façon basique. Voir la configuration pour Google Sheets si vous voulez centraliser.</p>
+
+      <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px">
+        <button class="cta secondary" onclick="closeConsent()">Annuler</button>
+        <button class="cta" id="consentSubmit">Continuer</button>
+      </div>
+
+      <p class="muted small" style="margin-top:10px">En donnant vos informations, vous acceptez de recevoir des notifications. Vous pouvez retirer votre consentement à tout moment.</p>
     </div>
   </div>
 
-  <!-- Simple success / info modal -->
-  <div id="infoModal" style="display:none" class="modal-back"><div class="modal"><button class="close" onclick="hideInfo()">✕</button><div id="infoContent"></div></div></div>
+  <!-- Info modal -->
+  <div id="infoModal" class="modal-back" style="display:none"><div class="modal"><button style="float:right" onclick="hideInfo()">✕</button><div id="infoText"></div></div></div>
 
-  <!-- SCRIPTS: app SPA, data, local-sim -->
   <script>
-    /* ---------- SAMPLE DATA (continent → countries → cultures) ----------
-       In production you will replace this with a dynamic DB or a JSON file served from your backend.
-    */
-    const WORLD = {
-      "Africa": {
-        "Senegal": [
-          {
-            id: "sabar",
-            title: "Sabar (Senegalese drumming & dance)",
-            summary: "Percussion, dance and social gatherings. Dress: colorful bubu, beads.",
-            media: [
-              {type:"img", src:"https://upload.wikimedia.org/wikipedia/commons/3/3f/Dance_Senegal.jpg", caption:"Danse traditionnelle"},
-              {type:"audio", src:"", caption:"(audio non disponible)"},
-              {type:"video", src:"", caption:"(vidéo non disponible)"}
-            ],
-            detail: {
-              language: "Wolof, French",
-              speaking: "Certaines expressions rituelles et proverbes wolof",
-              life: "Importance des cérémonies familiales, respect des anciens",
-            },
-            premiumNote: "Légende complète et interviews (premium)"
-          }
-        ],
-        "Nigeria":[
-          { id:"yoruba", title:"Yoruba traditions", summary:"Masques, Ifá, musiques", media:[], detail:{language:"Yoruba, English"} }
-        ]
+    /* =================== App JS =================== */
+    const state = { lang:'fr', countries: [], selectedCountry: null };
+
+    const I18N = {
+      fr: {
+        welcome:"Bienvenue — Welcome",
+        lead:"Découvrez les cultures, histoires et traditions du monde.",
+        exploreBtn:"Explorer maintenant / Explore now",
+        aboutTitle:"À propos / About",
+        aboutText:"ExploreWorld réunit le monde à travers la culture. Notre mission : rapprocher les peuples en partageant histoires, traditions et langues.",
+        discover:"Découvrir le monde / Discover the world",
+        exploreTitle:"Explorer / Explore",
+        chooseContinent:"Choisissez un continent / Choose a continent",
+        searchCountry:"Rechercher un pays / Search country",
+        consentTitle:"Avant d'explorer / Before you explore",
+        consentText:"Entrez votre Gmail et votre numéro de téléphone (obligatoire).",
+        continue:"Continuer",
+        cancel:"Annuler",
+        back:"Retour",
+        seePremium:"Voir contenu premium",
+        premiumTitle:"Premium",
+        premiumIntro:"Accès aux histoires exclusives, sans publicité et contenus approfondis."
       },
-      "Europe":{
-        "France":[
-          { id:"breton", title:"Breton traditions", summary:"Fest-noz, gwerz", media:[], detail:{language:"French"} }
-        ],
-        "UK":[
-          { id:"pub", title:"Pub culture", summary:"Musiques et convivialité", media:[], detail:{language:"English"} }
-        ]
-      },
-      "Asia":{
-        "Japan":[
-          { id:"matsuri", title:"Matsuri (festivals)", summary:"Parades, mikoshi, nourriture", media:[], detail:{language:"Japanese"} }
-        ]
-      },
-      "Americas":{
-        "USA":[
-          { id:"blues", title:"Blues music", summary:"Origine, instruments, style", media:[], detail:{language:"English"} }
-        ],
-        "Brazil":[
-          { id:"samba", title:"Samba", summary:"Dance and carnival", media:[], detail:{language:"Portuguese"} }
-        ]
-      },
-      "Oceania":{
-        "Australia":[
-          { id:"aboriginal", title:"Aboriginal Dreamtime", summary:"Oral legends & art", media:[], detail:{language:"English"} }
-        ]
+      en: {
+        welcome:"Welcome — Bienvenue",
+        lead:"Discover cultures, stories and traditions from every corner of the world.",
+        exploreBtn:"Explore now / Explorer maintenant",
+        aboutTitle:"About / À propos",
+        aboutText:"ExploreWorld brings the world together through culture. Our mission: to connect people by sharing stories, traditions and languages.",
+        discover:"Discover the world / Découvrir le monde",
+        exploreTitle:"Explore",
+        chooseContinent:"Choose a continent / Choisissez un continent",
+        searchCountry:"Search country / Rechercher un pays",
+        consentTitle:"Before you explore / Avant d'explorer",
+        consentText:"Enter your Gmail and your phone number (required).",
+        continue:"Continue",
+        cancel:"Cancel",
+        back:"Back",
+        seePremium:"See premium content",
+        premiumTitle:"Premium",
+        premiumIntro:"Access exclusive stories, ad-free and in-depth content."
       }
     };
 
-    /* ---------- Simple router ---------- */
-    function go(hash){
-      location.hash = hash;
+    // ----------------- helpers -----------------
+    const $ = id => document.getElementById(id);
+    function t(k){ return I18N[state.lang][k] || k; }
+    function setText(selector, text){ const el = document.querySelector(selector); if(el) el.textContent = text; }
+
+    // initial
+    document.addEventListener('DOMContentLoaded', ()=>{
+      // language toggle
+      $('langToggle').addEventListener('click', toggleLang);
+      // explore flow
+      $('exploreNow').addEventListener('click', ()=> openConsent());
+      $('discoverBtn').addEventListener('click', ()=> showView('exploreView'));
+      // consent submit
+      $('consentSubmit').addEventListener('click', submitConsent);
+      // country search
+      $('countrySearch').addEventListener('input', onCountrySearch);
+      // init UI
+      renderI18N();
+      renderContinents();
+    });
+
+    function renderI18N(){
+      // update small static texts
+      document.querySelectorAll('[data-i18n]').forEach(el=>{
+        const key = el.getAttribute('data-i18n');
+        el.textContent = t(key);
+      });
+      // update header lang toggle label
+      $('langToggle').textContent = (state.lang === 'fr' ? 'EN' : 'FR');
     }
 
-    function showView(view){
-      const ids=['homeView','aboutView','exploreView','premiumView'];
-      ids.forEach(id=>document.getElementById(id).style.display = (id===view ? '' : 'none'));
-      // header small/big?
+    function toggleLang(){
+      state.lang = (state.lang === 'fr') ? 'en' : 'fr';
+      renderI18N();
+    }
+
+    function showView(viewId){
+      document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+      document.querySelectorAll('.view').forEach(v=>v.classList.add('active')); // ensure fallback
+      // hide all
+      document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+      const el = document.getElementById(viewId);
+      if(el) el.classList.add('active');
       window.scrollTo({top:0,behavior:'smooth'});
     }
 
-    function onHash(){
-      const h = location.hash.replace('#','') || 'home';
-      if(h==='home'){ showView('homeView'); }
-      else if(h==='about'){ showView('aboutView'); }
-      else if(h==='explore'){ showView('exploreView'); loadContinents(); }
-      else if(h==='premium'){ showView('premiumView'); }
-      else { showView('homeView'); }
-    }
-    window.addEventListener('hashchange', onHash);
-    onHash();
-
-    /* ---------- Consent modal (email + phone) ---------- */
-    const consentModal = document.getElementById('consentModal');
-    const emailInp = document.getElementById('emailInp');
-    const phoneInp = document.getElementById('phoneInp');
-
-    document.getElementById('exploreBtn').addEventListener('click', ()=>{
-      // show modal (required)
-      consentModal.style.display = 'flex';
-    });
-
-    document.getElementById('discoverBtn').addEventListener('click', ()=> go('#explore'));
-
-    function closeConsent(){ consentModal.style.display='none'; }
-
-    function saveConsent(){
-      const email = emailInp.value.trim();
-      const phone = phoneInp.value.trim();
-      if(!email || !phone){ alert('Email et numéro obligatoires / Email and phone required'); return; }
-      // Basic validation passed -> store locally and (optionally) send to Google Sheets (see notes)
-      localStorage.setItem('explorer_user', JSON.stringify({email,phone,ts:Date.now()}));
-      consentModal.style.display='none';
-      go('#explore');
-      alert("Merci ! Vous pouvez maintenant explorer / Thank you! You can now explore.");
-      // Example: sendToGoogleSheets({email,phone});  // see below
-    }
-
-    /* ---------- Simple info modal ---------- */
-    function showInfo(html){ document.getElementById('infoContent').innerHTML = html; document.getElementById('infoModal').style.display='flex'; }
-    function hideInfo(){ document.getElementById('infoModal').style.display='none'; }
-
-    /* ---------- Explore: list continents, countries, cultures ---------- */
-    function loadContinents(){
-      const cont = Object.keys(WORLD);
-      const el = document.getElementById('continentsList');
-      el.innerHTML = '';
-      cont.forEach(cn=>{
-        const btn = document.createElement('button');
-        btn.className='card tag';
-        btn.textContent = cn;
-        btn.onclick = ()=>selectContinent(cn);
-        el.appendChild(btn);
-      });
-      // reset others
-      document.getElementById('countriesList').innerHTML = 'Choisissez un continent / Choose a continent';
-      document.getElementById('culturesList').innerHTML = 'Choisissez un pays / Choose a country';
-      document.getElementById('cultureDetail').style.display='none';
-    }
-
-    function selectContinent(name){
-      const countries = Object.keys(WORLD[name]||{});
-      const el = document.getElementById('countriesList');
-      el.innerHTML = '';
-      if(countries.length===0) el.innerHTML = '<div class="small">Aucun pays disponible</div>';
-      countries.forEach(ct=>{
-        const div = document.createElement('div');
-        div.className='card';
-        div.style.cursor='pointer';
-        div.textContent = ct;
-        div.onclick = ()=>selectCountry(name,ct);
-        el.appendChild(div);
-      });
-    }
-
-    function selectCountry(cont,country){
-      const list = WORLD[cont][country] || [];
-      const el = document.getElementById('culturesList');
-      el.innerHTML = '';
-      if(list.length===0) el.innerHTML = '<div class="small">Aucune culture trouvée</div>';
-      list.forEach(item=>{
-        const node = document.createElement('div');
-        node.className='card';
-        const title = document.createElement('div'); title.style.fontWeight='700'; title.textContent = item.title;
-        const p = document.createElement('div'); p.className='small'; p.textContent = item.summary;
-        const btn = document.createElement('button'); btn.className='btn secondary'; btn.textContent='Voir / View';
-        btn.onclick = ()=>showCulture(item);
-        node.appendChild(title); node.appendChild(p); node.appendChild(btn);
-        el.appendChild(node);
-      });
-    }
-
-    function showCulture(item){
-      document.getElementById('cultureTitle').textContent = item.title;
-      document.getElementById('cultureDesc').textContent = JSON.stringify(item.detail || {}, null, 2).replace(/\\n/g,' ');
-      const media = document.getElementById('cultureMedia'); media.innerHTML='';
-      (item.media||[]).forEach(m=>{
-        if(m.type==='img'){ const i=document.createElement('img'); i.src=m.src; i.style.maxWidth='100%'; media.appendChild(i); }
-        if(m.type==='video'){ const v=document.createElement('div'); v.textContent='(vidéo) '+(m.caption||''); media.appendChild(v); }
-      });
-      document.getElementById('cultureDetail').style.display='';
-      // attach premium button
-      document.getElementById('toPremiumBtn').onclick = ()=>go('#premium');
-    }
-
-    /* ---------- Premium checkout (SIMULATED) ---------- */
-    function startCheckout(plan){
-      // In production: call your backend to create a Stripe checkout session (server-side)
-      showInfo('<h3>Simulate Payment</h3><p>Plan selected: '+plan+' F /month</p><p>This demo does not process real payments.</p><p>In production you must connect a payment provider (Stripe, PayDunya, or Mobile Money gateway) with a server endpoint.</p>');
-    }
-
-    /* ---------- Google Sheets integration (optional) ----------
-       To save emails + phones centrally you can create a Google Apps Script web app endpoint:
-       1) In Google Drive -> New -> More -> Google Apps Script
-       2) Create a script that accepts POST JSON and appends to a Google Sheet.
-       3) Deploy -> "Web app" -> Anyone, even anonymous (or only your account if using auth)
-       4) Use the endpoint URL below and call fetch(endpoint, {method:'POST', body:JSON.stringify(data)})
-       Example Apps Script code (server side) is in the README below.
-    */
-    async function sendToGoogleSheets(data){
-      const SHEETS_ENDPOINT = 'REPLACE_WITH_YOUR_APPS_SCRIPT_URL';
-      if(!SHEETS_ENDPOINT || SHEETS_ENDPOINT.startsWith('REPLACE')) return console.log('Sheets endpoint not configured.');
-      try{
-        const r = await fetch(SHEETS_ENDPOINT, {
+    // ------------- Consent modal (email + phone required) -------------
+    function openConsent(){ $('consentModal').style.display = 'flex'; }
+    function closeConsent(){ $('consentModal').style.display = 'none'; }
+    function submitConsent(){
+      const email = $('emailInput').value.trim();
+      const phone = $('phoneInput').value.trim();
+      if(!email || !phone){
+        alert(state.lang === 'fr' ? "Email et téléphone sont obligatoires." : "Email and phone are required.");
+        return;
+      }
+      const user = { email, phone, ts: new Date().toISOString() };
+      // Save locally
+      localStorage.setItem('explorer_user', JSON.stringify(user));
+      // Optionally send to Google Sheets: replace the URL below after deploying Apps Script
+      const GOOGLE_SCRIPT_URL = "REPLACE_WITH_YOUR_GOOGLE_SCRIPT_URL";
+      if(!GOOGLE_SCRIPT_URL.startsWith('REPLACE')){
+        fetch(GOOGLE_SCRIPT_URL, {
           method:'POST',
           headers:{'Content-Type':'application/json'},
-          body: JSON.stringify(data)
-        });
-        const json = await r.json();
-        console.log('Sheets response',json);
-      }catch(e){console.error(e)}
+          body: JSON.stringify(user)
+        }).then(r=>r.json()).then(j=>console.log('sheet ok',j)).catch(e=>console.warn('sheets error',e));
+      }
+      closeConsent();
+      showView('exploreView');
+      // show a short thanks
+      showInfo((state.lang==='fr'?'Merci — vous pouvez explorer maintenant.':'Thank you — you can now explore.'));
     }
 
-    /* ---------- small helpers ---------- */
-    document.getElementById('logoImg').onclick = ()=> window.open('/', '_self');
-    // initial route
-    if(!location.hash) location.hash = '#home';
-    onHash();
-
-    // Let the "About -> Discover" button go to explore
-    document.getElementById('discoverBtn').addEventListener('click', ()=> {
-      go('#explore');
-    });
-
-    // Save consent send to sheet example
-    function saveConsentAndSend(){
-      const obj = JSON.parse(localStorage.getItem('explorer_user')||'{}');
-      if(obj.email) sendToGoogleSheets({type:'signup', ...obj});
+    // ------------- Continents & Countries (RestCountries API) -------------
+    const CONTINENTS = ["Africa","Europe","Asia","Americas","Oceania","Antarctic"];
+    function renderContinents(){
+      const c = $('continents');
+      c.innerHTML = '';
+      CONTINENTS.forEach(ct=>{
+        const btn = document.createElement('button');
+        btn.className = 'chip';
+        btn.textContent = ct;
+        btn.onclick = ()=> selectContinent(ct);
+        c.appendChild(btn);
+      });
     }
 
-    // call at startup if exists locally
-    if(localStorage.getItem('explorer_user')) saveConsentAndSend();
-
-  </script>
-
-  <!-- END body -->
-</body>
-  </html>
+    async function selectContinent(continent){
+      // show loading
+      const list = $('countriesList');
+      list.innerHTML = '<div class="muted">Chargement des pays… / Loading countries...</div>';
+      try {
+        const res = await fetch(`https://restcountries.com/v3.1/region/${continent}`);
+        if(!res.ok) throw new Error('fetch failed');
+        const data = await res.json();
+        // sort by name.common
+        data.sort((a,b)=> (a.name.common > b.name.common ? 1 : -1));
+        state.countries = data;
+        renderCountries(data);
+      } catch(err){
+        console.error(err);
+        list.innerHTML =
