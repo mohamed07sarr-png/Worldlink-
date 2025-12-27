@@ -1,1 +1,206 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ExploreWorld — Strengthening global connections through culture</title>
 
+<style>
+body{
+  margin:0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg,#1e90ff,#ff914d);
+  color:#fff;
+}
+header{
+  padding:40px 20px;
+  text-align:center;
+}
+section{
+  display:none;
+  background:#fff;
+  color:#333;
+  padding:30px;
+  min-height:100vh;
+}
+section.active{display:block;}
+button{
+  padding:12px 25px;
+  border:none;
+  border-radius:25px;
+  background:#1e90ff;
+  color:#fff;
+  font-size:16px;
+  cursor:pointer;
+}
+button:hover{background:#1877d6;}
+input,select{
+  width:100%;
+  padding:10px;
+  margin:10px 0;
+}
+.nav{
+  display:flex;
+  justify-content:center;
+  gap:15px;
+  margin-bottom:20px;
+}
+.premium{
+  background:#f5f5f5;
+  padding:20px;
+  border-radius:10px;
+  margin:15px 0;
+}
+.lock{
+  color:red;
+  font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<!-- PAGE ACCUEIL -->
+<header id="home" class="active">
+  <h1>ExploreWorld</h1>
+  <h3>Strengthening global connections through culture</h3>
+  <p>🇫🇷 Explorer les cultures du monde &nbsp;|&nbsp; 🇬🇧 Explore world cultures</p>
+  <button onclick="openForm()">Explorer maintenant</button>
+</header>
+
+<!-- FORMULAIRE OBLIGATOIRE -->
+<section id="form">
+  <h2>Inscription obligatoire</h2>
+  <p>Veuillez entrer votre Gmail et votre numéro de téléphone</p>
+
+  <input type="email" id="email" placeholder="Gmail" required>
+  <input type="tel" id="phone" placeholder="Numéro de téléphone" required>
+
+  <button onclick="submitForm()">Continuer</button>
+</section>
+
+<!-- A PROPOS -->
+<section id="about">
+  <div class="nav">
+    <button onclick="show('explore')">Découvrir le monde</button>
+  </div>
+
+  <h2>À propos / About</h2>
+  <p><b>FR :</b> ExploreWorld est une plateforme dédiée au partage des cultures du monde.</p>
+  <p><b>EN :</b> ExploreWorld is a platform dedicated to sharing world cultures.</p>
+
+  <blockquote>
+    “Internet appartient à ceux qui osent créer.”
+  </blockquote>
+</section>
+
+<!-- EXPLORER -->
+<section id="explore">
+  <h2>Explorer les cultures</h2>
+
+  <label>Continent</label>
+  <select id="continent" onchange="loadCountries()">
+    <option value="">-- Choisir --</option>
+    <option value="Africa">Afrique</option>
+    <option value="Europe">Europe</option>
+    <option value="Asia">Asie</option>
+    <option value="America">Amériques</option>
+    <option value="Oceania">Océanie</option>
+  </select>
+
+  <label>Pays</label>
+  <select id="country" onchange="loadCulture()"></select>
+
+  <div id="culture"></div>
+</section>
+
+<!-- PREMIUM -->
+<section id="premium">
+  <h2>Compte Premium</h2>
+
+  <div class="premium">
+    <h3>600 F / mois</h3>
+    <p>Vidéos 35 min • Gain 10 F / vidéo</p>
+    <p class="lock">Paiement bientôt disponible</p>
+  </div>
+
+  <div class="premium">
+    <h3>2 000 F / mois</h3>
+    <p>Vidéos 20 min • Gain 25 F / vidéo</p>
+    <p class="lock">Paiement bientôt disponible</p>
+  </div>
+
+  <div class="premium">
+    <h3>5 000 F / mois</h3>
+    <p>Vidéos 14 min • Gain 100 F / vidéo</p>
+    <p class="lock">Paiement bientôt disponible</p>
+  </div>
+
+  <div class="premium">
+    <h3>15 000 F / mois</h3>
+    <p>Vidéos 5 min • Gain 350 F / vidéo</p>
+    <p class="lock">Paiement bientôt disponible</p>
+  </div>
+
+  <p>Wave • Orange Money • Visa • MasterCard • PayPal</p>
+</section>
+
+<script>
+let registered=false;
+
+function show(id){
+  document.querySelectorAll("section,header").forEach(e=>e.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+}
+
+function openForm(){
+  if(!registered){show("form");}
+  else{show("about");}
+}
+
+function submitForm(){
+  let email=document.getElementById("email").value;
+  let phone=document.getElementById("phone").value;
+  if(!email||!phone){alert("Champs obligatoires");return;}
+
+  fetch("PASTE_YOUR_SCRIPT_URL_HERE",{
+    method:"POST",
+    body:JSON.stringify({email,phone})
+  });
+
+  registered=true;
+  show("about");
+}
+
+function loadCountries(){
+  let c=document.getElementById("continent").value;
+  let country=document.getElementById("country");
+  country.innerHTML="";
+  let data={
+    Africa:["Sénégal","Nigeria","Kenya","Maroc"],
+    Europe:["France","Allemagne","Italie"],
+    Asia:["Japon","Chine","Inde"],
+    America:["USA","Brésil","Canada"],
+    Oceania:["Australie","Nouvelle-Zélande"]
+  };
+  if(data[c]){
+    data[c].forEach(p=>{
+      let o=document.createElement("option");
+      o.text=p; country.add(o);
+    });
+  }
+}
+
+function loadCulture(){
+  let div=document.getElementById("culture");
+  div.innerHTML=`
+    <h3>Culture sélectionnée</h3>
+    <p>Langue • Coutumes • Vêtements • Manières de vivre</p>
+    <p class="lock">Légendes et vidéos disponibles en Premium</p>
+    <button onclick="show('premium')">Voir Premium</button>
+  `;
+}
+</script>
+
+</body>
+    </html>
